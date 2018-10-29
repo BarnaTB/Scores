@@ -75,7 +75,7 @@ class User(object):
             username=self.username,
             email=self.email,
             password=self.password,
-            last_seen=self.last_seen
+            last_seen=self.last_seen,
             active=self.active
         )
         if not self.validate_email():
