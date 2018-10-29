@@ -2,10 +2,10 @@ from setuptools import setup
 
 
 setup(
-    name='scores',
+    name='bootcamperscores',
     version='1.0',
-    py_modules=['api'],
+    py_modules=['scores'],
     install_requires=['click'],
     entry_points="""[console_scripts]
-                      scores = scores:cli""",
+                      bootcamperscores = scores:cli""",
 )
