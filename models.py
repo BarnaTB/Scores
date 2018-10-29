@@ -5,27 +5,25 @@ class Bootcamper(User):
 
     def __init__(self, username, email, password):
         User.__init__(self, username, email, password)
-        self.username = username
-        self.email = email
-        self.password = password
 
     def view_score(self, username):
         """method for viewing scores"""
-        if get_score_for user is None:
-            return No candidate results
+        score = score_data.get_score_for_user(self.username)
+        if score is None:
+            return "No candidate results"
+        return score
 
 class LF(User):
     """class for LFs"""
 
     def __init__(self, username, email, password):
         User.__init__(self, username, email, password)
-        self.username = username
-        self.email = email
-        self.password = password
 
-    def view_all_scores(self, username):
+    def view_all_scores(self, username, score_data, user_data):
         """method for getting all scores"""
-        if get_scores is None:
-            return No scores added
+        scores = score_data.get_scores_supervised_by_lfa(self.username, user_data)
+        if not scores:
+            return "No scores added"
+        return scores
 
 
