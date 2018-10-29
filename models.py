@@ -8,7 +8,6 @@ class User(object):
         self.email = email
         self.password = password
         self.active = False
-        self.users = []
         self.last_seen = datetime.datetime.now()
 
     def validate_email(self):
@@ -79,17 +78,17 @@ class User(object):
             active=self.active
         )
         if not self.validate_email():
-            return 'Invalid email! Email should in the form - johndoe@mail.com'
+            print('Invalid email! Email should in the form - johndoe@mail.com')
+            return False
         if not self.validate_password():
-            return 'Password should contain an uppercase, lowercase and a\
-                number character and be at least 4 characters long!'
+            print('Password should contain an uppercase, lowercase and a \
+number character and be at least 4 characters long!')
+            return False
         if not self.validate_user_names():
-            return 'Your username cannot be the same as your name and less\
-                than 4 characters long!'
-        else:
-            self.users.append(user)
-            return 'User {0} has been registered\
- successfully!'.format(self.username)
+            print('Your username cannot be the same as your name and less \
+than 4 characters long!')
+            return False
+        return True
 
     def login_user(self, username, password):
         """
@@ -103,36 +102,36 @@ class User(object):
             if user['username'] == username and user['password'] == password:
                 user['last_seen'] = self.last_seen
                 user['active'] = True
-                return 'You are logged in now'
+                print('You are logged in now')
+                return True
             else:
-                return 'Sorry wrong email or password!'
+                print('Sorry wrong email or password!')
+                return False
 
-"""module bootcamper"""
 
-class Bootcamper(User):
+class BootCamper(User):
     """Class for bootcampers inheriting from user class"""
 
     def __init__(self, username, email, password):
         User.__init__(self, username, email, password)
-        self.username = username
-        self.email = email
-        self.password = password
 
-    def view_score(self, username):
+    def view_score(self, score_data):
         """method for viewing scores"""
-        if get_score_for user is None:
-            return No candidate results
+        score = score_data.get_score_for_user(self.username)
+        if score is None:
+            return "No candidate results"
+        return score
 
-class LF(User):
+
+class LearningFacilitator(User):
     """class for LFs"""
 
     def __init__(self, username, email, password):
         User.__init__(self, username, email, password)
-        self.username = username
-        self.email = email
-        self.password = password
 
-    def view_all_scores(self, username):
+    def view_all_scores(self, username, score_data, user_data):
         """method for getting all scores"""
-        if get_scores is None:
-            return No scores added
+        scores = score_data.get_scores_supervised_by_lfa(self.username, user_data)
+        if not scores:
+            return "No scores added"
+        return scores
