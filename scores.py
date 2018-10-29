@@ -5,14 +5,14 @@ users = []
 
 
 @click.command()
-@click.argument('username')
-@click.option('--email', default='', help='Enter your email')
-@click.option('--password', default='', help='Enter your password')
-def cli():
-    username = input("Enter username: ")
-    password = input("Enter password: ")
-    email = input("Enter email: ")
+@click.option('--username', prompt="your username")
+@click.option('--email', prompt="your email", help='Enter your email')
+@click.option('--password', prompt="your password", help='Enter your password')
+def cli(username, email, password):
     user = User(username, email, password)
     user.register_user()
+    click.echo(username)
+    click.echo(password)
+    click.echo(email)
     click.echo(users)
 
