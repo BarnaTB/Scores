@@ -1,0 +1,8 @@
+README.md
+scores.py
+bootcamperscores.egg-info/PKG-INFO
+bootcamperscores.egg-info/SOURCES.txt
+bootcamperscores.egg-info/dependency_links.txt
+bootcamperscores.egg-info/entry_points.txt
+bootcamperscores.egg-info/requires.txt
+bootcamperscores.egg-info/top_level.txt
